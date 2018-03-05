@@ -42,6 +42,13 @@ public class MemeItemFragment extends ListFragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MemeDataSource dataSource = new MemeDataSource(this.getActivity());
+        ArrayList<Meme> memes = dataSource.read();
+        setListAdapter(new MemeItemListAdapter(getActivity(), memes));
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
